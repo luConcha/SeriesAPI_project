@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [series, setSeries] = useState([]);
   const [search, setSearch] = useState('');
-  // const [seriesSearch, setSeriesSearch] = useState([]);
 
   useEffect(() => {
     fetch('https://api.tvmaze.com/shows')
@@ -23,34 +22,15 @@ const Home = () => {
     return serie.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  // const findSerie = (searchText) => {
-  //   fetch(`https://api.tvmaze.com/search/shows?q=${searchText}`)
-  //     .then((response) => response.json())
-  //     .then((results) => {
-  //       console.log(results);
-  //       setSeriesSearch(results);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
   const handleInputChange = (event) => {
     setSearch(event.target.value);
   };
-
-  // const findSerie = (searchText) => {
-  //   const newSearch = series.filter((serie) => {
-  //     return serie.name.toLowerCase().includes(searchText.toLowerCase());
-  //   });
-  //   setSeries(newSearch);
-  // };
 
   return (
     <>
       <div className='container'>
         <br />
         <h1>Series</h1>
-        {/* <SearchBar handleSearch={findSerie} /> */}
         <form className='input-group mb-3'>
           <input
             type='text'
@@ -64,15 +44,6 @@ const Home = () => {
 
         <div className='container text-center'>
           <div className='row'>
-            {/* {seriesSearch.map((serie, index) => (
-              <div className='col' key={index}>
-                <img src={serie?.show.image.medium} alt='' />
-
-                <Link to={`/serie/${serie.show.id}`}>
-                  <p>{serie?.show.name}</p>
-                </Link>
-              </div>
-            ))} */}
             {findSerie.map((serie, index) => (
               <div className='col' key={index}>
                 <img src={serie?.image.medium} alt='' />
